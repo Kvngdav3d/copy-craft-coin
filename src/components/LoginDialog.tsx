@@ -11,6 +11,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Mail, Phone, Eye, EyeOff } from "lucide-react";
 
 interface LoginDialogProps {
@@ -22,6 +29,7 @@ interface LoginDialogProps {
 export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: LoginDialogProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(defaultToSignUp);
+  const [countryCode, setCountryCode] = useState("+1");
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -102,12 +110,41 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
           <TabsContent value="phone" className="space-y-4 mt-6">
             <div className="space-y-2">
               <Label htmlFor="phone">Phone Number</Label>
-              <Input
-                id="phone"
-                type="tel"
-                placeholder="+1 (555) 123-4567"
-                className="w-full"
-              />
+              <div className="flex gap-2">
+                <Select value={countryCode} onValueChange={setCountryCode}>
+                  <SelectTrigger className="w-[120px]">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="+1">🇺🇸 +1</SelectItem>
+                    <SelectItem value="+44">🇬🇧 +44</SelectItem>
+                    <SelectItem value="+91">🇮🇳 +91</SelectItem>
+                    <SelectItem value="+86">🇨🇳 +86</SelectItem>
+                    <SelectItem value="+81">🇯🇵 +81</SelectItem>
+                    <SelectItem value="+49">🇩🇪 +49</SelectItem>
+                    <SelectItem value="+33">🇫🇷 +33</SelectItem>
+                    <SelectItem value="+39">🇮🇹 +39</SelectItem>
+                    <SelectItem value="+34">🇪🇸 +34</SelectItem>
+                    <SelectItem value="+7">🇷🇺 +7</SelectItem>
+                    <SelectItem value="+55">🇧🇷 +55</SelectItem>
+                    <SelectItem value="+52">🇲🇽 +52</SelectItem>
+                    <SelectItem value="+61">🇦🇺 +61</SelectItem>
+                    <SelectItem value="+82">🇰🇷 +82</SelectItem>
+                    <SelectItem value="+27">🇿🇦 +27</SelectItem>
+                    <SelectItem value="+234">🇳🇬 +234</SelectItem>
+                    <SelectItem value="+62">🇮🇩 +62</SelectItem>
+                    <SelectItem value="+63">🇵🇭 +63</SelectItem>
+                    <SelectItem value="+20">🇪🇬 +20</SelectItem>
+                    <SelectItem value="+966">🇸🇦 +966</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Input
+                  id="phone"
+                  type="tel"
+                  placeholder="555 123-4567"
+                  className="flex-1"
+                />
+              </div>
             </div>
             
             <div className="space-y-2">
