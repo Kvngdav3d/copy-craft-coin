@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -19,6 +19,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Mail, Phone, Eye, EyeOff } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { z } from "zod";
+
+const emailSchema = z.string().email("Invalid email address");
+const passwordSchema = z.string().min(6, "Password must be at least 6 characters");
+const phoneSchema = z.string().min(10, "Phone number must be at least 10 digits");
 
 interface LoginDialogProps {
   open: boolean;
@@ -30,6 +36,80 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(defaultToSignUp);
   const [countryCode, setCountryCode] = useState("+1");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  
+  const { signInWithGoogle, signInWithEmail, signUpWithEmail, signInWithPhone, signUpWithPhone } = useAuth();
+
+  useEffect(() => {
+    setIsSignUp(defaultToSignUp);
+  }, [defaultToSignUp]);
+
+  const handleEmailAuth = async () => {
+    setErrors({});
+    
+    try {
+      emailSchema.parse(email);
+      passwordSchema.parse(password);
+      
+      if (isSignUp) {
+        if (password !== confirmPassword) {
+          setErrors({ confirmPassword: "Passwords do not match" });
+          return;
+        }
+        await signUpWithEmail(email, password);
+      } else {
+        await signInWithEmail(email, password);
+      }
+      
+      onOpenChange(false);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: { [key: string]: string } = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            fieldErrors[err.path[0] as string] = err.message;
+          }
+        });
+        setErrors(fieldErrors);
+      }
+    }
+  };
+
+  const handlePhoneAuth = async () => {
+    setErrors({});
+    
+    try {
+      const fullPhone = `${countryCode}${phone}`;
+      phoneSchema.parse(phone);
+      passwordSchema.parse(password);
+      
+      if (isSignUp) {
+        if (password !== confirmPassword) {
+          setErrors({ confirmPassword: "Passwords do not match" });
+          return;
+        }
+        await signUpWithPhone(fullPhone, password);
+      } else {
+        await signInWithPhone(fullPhone, password);
+      }
+      
+      onOpenChange(false);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: { [key: string]: string } = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            fieldErrors[err.path[0] as string] = err.message;
+          }
+        });
+        setErrors(fieldErrors);
+      }
+    }
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -66,7 +146,10 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
                 type="email"
                 placeholder="Enter your email"
                 className="w-full"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
+              {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
             </div>
             
             <div className="space-y-2">
@@ -77,6 +160,8 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   className="w-full pr-10"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <Button
                   type="button"
@@ -92,6 +177,7 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
                   )}
                 </Button>
               </div>
+              {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
             </div>
             
             {isSignUp && (
@@ -102,9 +188,16 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
                   type="password"
                   placeholder="Confirm your password"
                   className="w-full"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
+                {errors.confirmPassword && <p className="text-sm text-destructive">{errors.confirmPassword}</p>}
               </div>
             )}
+            
+            <Button className="w-full" variant="hero" onClick={handleEmailAuth}>
+              {isSignUp ? "Create Account" : "Sign In"}
+            </Button>
           </TabsContent>
           
           <TabsContent value="phone" className="space-y-4 mt-6">
@@ -143,8 +236,11 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
                   type="tel"
                   placeholder="555 123-4567"
                   className="flex-1"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
+              {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
             </div>
             
             <div className="space-y-2">
@@ -155,6 +251,8 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   className="w-full pr-10"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <Button
                   type="button"
@@ -170,6 +268,7 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
                   )}
                 </Button>
               </div>
+              {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
             </div>
             
             {isSignUp && (
@@ -180,16 +279,20 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
                   type="password"
                   placeholder="Confirm your password"
                   className="w-full"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
+                {errors.confirmPassword && <p className="text-sm text-destructive">{errors.confirmPassword}</p>}
               </div>
             )}
+            
+            <Button className="w-full" variant="hero" onClick={handlePhoneAuth}>
+              {isSignUp ? "Create Account" : "Sign In"}
+            </Button>
           </TabsContent>
         </Tabs>
         
         <div className="space-y-4 mt-6">
-          <Button className="w-full" variant="hero">
-            {isSignUp ? "Create Account" : "Sign In"}
-          </Button>
           
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
@@ -202,7 +305,7 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
             </div>
           </div>
           
-          <Button variant="outline" className="w-full">
+          <Button variant="outline" className="w-full" onClick={signInWithGoogle}>
             <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
               <path
                 d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
