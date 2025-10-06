@@ -16,11 +16,12 @@ import { Mail, Phone, Eye, EyeOff } from "lucide-react";
 interface LoginDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  defaultToSignUp?: boolean;
 }
 
-export const LoginDialog = ({ open, onOpenChange }: LoginDialogProps) => {
+export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: LoginDialogProps) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(defaultToSignUp);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>

@@ -15,6 +15,7 @@ import { LoginDialog } from "./LoginDialog";
 export const Header = () => {
   const [open, setOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [defaultToSignUp, setDefaultToSignUp] = useState(false);
 
   return (
     <>
@@ -57,7 +58,7 @@ export const Header = () => {
         </CommandList>
       </CommandDialog>
       
-      <LoginDialog open={loginOpen} onOpenChange={setLoginOpen} />
+      <LoginDialog open={loginOpen} onOpenChange={setLoginOpen} defaultToSignUp={defaultToSignUp} />
       
       <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -94,11 +95,11 @@ export const Header = () => {
           <Button variant="ghost" size="icon">
             <Bell className="h-4 w-4" />
           </Button>
-          <Button variant="outline" onClick={() => setLoginOpen(true)}>
+          <Button variant="outline" onClick={() => { setDefaultToSignUp(false); setLoginOpen(true); }}>
             <User className="h-4 w-4" />
             Login
           </Button>
-          <Button variant="hero">
+          <Button variant="hero" onClick={() => { setDefaultToSignUp(true); setLoginOpen(true); }}>
             Get Started
           </Button>
         </div>
