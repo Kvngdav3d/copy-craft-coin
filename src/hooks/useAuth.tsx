@@ -31,6 +31,39 @@ export const useAuth = () => {
 
   const signInWithGoogle = async () => {
     try {
+      const inIframe = window.top !== window.self;
+
+      if (inIframe) {
+        // In preview iframe: get the OAuth URL and navigate top-level to bypass iframe restrictions
+        const { data, error } = await supabase.auth.signInWithOAuth({
+          provider: 'google',
+          options: {
+            redirectTo: `${window.location.origin}/`,
+            skipBrowserRedirect: true,
+          },
+        });
+
+        if (error) {
+          toast({
+            title: "Error",
+            description: error.message,
+            variant: "destructive",
+          });
+          return;
+        }
+
+        if (data?.url) {
+          window.top!.location.href = data.url; // force top-level redirect
+        } else {
+          toast({
+            title: "Error",
+            description: "Unable to start Google sign-in.",
+            variant: "destructive",
+          });
+        }
+        return;
+      }
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
