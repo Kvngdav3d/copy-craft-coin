@@ -1,69 +1,46 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  Copy, 
-  BarChart3, 
-  Shield, 
-  Users, 
-  Brain, 
-  Smartphone,
-  Clock,
-  TrendingUp,
-  Globe,
-  BookOpen,
-  DollarSign,
-  Zap
-} from "lucide-react";
-
-const features = [
-  {
-    icon: Copy,
-    title: "Copy Trading",
-    description: "Automatically replicate trades from successful traders with full transparency.",
-    badge: "Most Popular",
-    color: "text-primary"
-  },
-  {
-    icon: BarChart3,
-    title: "Real-Time Analytics",
-    description: "Advanced charts, technical indicators, and portfolio performance tracking.",
-    badge: "Professional",
-    color: "text-accent"
-  },
-  {
-    icon: Shield,
-    title: "Bank-Grade Security",
-    description: "2FA, encryption, cold storage, and insurance protection for your assets.",
-    badge: "Secure",
-    color: "text-success"
-  },
-  {
-    icon: Brain,
-    title: "AI Trading Bots",
-    description: "Smart algorithms that analyze market trends and execute optimal trades.",
-    badge: "AI-Powered",
-    color: "text-warning"
-  },
-  {
-    icon: Users,
-    title: "Social Trading",
-    description: "Connect with traders, share insights, and learn from the community.",
-    badge: "Community",
-    color: "text-primary"
-  },
-  {
-    icon: Globe,
-    title: "Multi-Crypto Support",
-    description: "Trade 500+ cryptocurrencies including Bitcoin, Ethereum, and altcoins.",
-    badge: "Extensive",
-    color: "text-accent"
-  }
-];
-
+import { Copy, BarChart3, Shield, Users, Brain, Smartphone, Clock, TrendingUp, Globe, BookOpen, DollarSign, Zap } from "lucide-react";
+const features = [{
+  icon: Copy,
+  title: "Copy Trading",
+  description: "Automatically replicate trades from successful traders with full transparency.",
+  badge: "Most Popular",
+  color: "text-primary"
+}, {
+  icon: BarChart3,
+  title: "Real-Time Analytics",
+  description: "Advanced charts, technical indicators, and portfolio performance tracking.",
+  badge: "Professional",
+  color: "text-accent"
+}, {
+  icon: Shield,
+  title: "Bank-Grade Security",
+  description: "2FA, encryption, cold storage, and insurance protection for your assets.",
+  badge: "Secure",
+  color: "text-success"
+}, {
+  icon: Brain,
+  title: "AI Trading Bots",
+  description: "Smart algorithms that analyze market trends and execute optimal trades.",
+  badge: "AI-Powered",
+  color: "text-warning"
+}, {
+  icon: Users,
+  title: "Social Trading",
+  description: "Connect with traders, share insights, and learn from the community.",
+  badge: "Community",
+  color: "text-primary"
+}, {
+  icon: Globe,
+  title: "Multi-Crypto Support",
+  description: "Trade 500+ cryptocurrencies including Bitcoin, Ethereum, and altcoins.",
+  badge: "Extensive",
+  color: "text-accent"
+}];
 export const Features = () => {
-  return (
-    <section className="py-24 bg-background" id="features">
+  return <section className="py-24 bg-background" id="features">
       <div className="container">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4">
@@ -80,8 +57,7 @@ export const Features = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {features.map((feature, index) => (
-            <Card key={index} className="p-6 bg-gradient-card border-border/50 hover:shadow-card transition-all duration-300 hover:-translate-y-1">
+          {features.map((feature, index) => <Card key={index} className="p-6 bg-gradient-card border-border/50 hover:shadow-card transition-all duration-300 hover:-translate-y-1">
               <div className="flex items-center gap-3 mb-4">
                 <div className={`p-2 rounded-lg bg-secondary ${feature.color}`}>
                   <feature.icon className="h-6 w-6" />
@@ -96,8 +72,7 @@ export const Features = () => {
               <p className="text-muted-foreground">
                 {feature.description}
               </p>
-            </Card>
-          ))}
+            </Card>)}
         </div>
 
         <Card className="p-8 bg-gradient-hero border-border/50 shadow-card">
@@ -115,10 +90,7 @@ export const Features = () => {
                   <TrendingUp className="h-4 w-4" />
                   Start Trading Now
                 </Button>
-                <Button variant="outline" size="lg">
-                  <BookOpen className="h-4 w-4" />
-                  Learn More
-                </Button>
+                
               </div>
             </div>
             
@@ -147,6 +119,5 @@ export const Features = () => {
           </div>
         </Card>
       </div>
-    </section>
-  );
+    </section>;
 };
