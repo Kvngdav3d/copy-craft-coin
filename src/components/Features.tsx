@@ -50,10 +50,18 @@ export const Features = () => {
             Everything You Need to
             <span className="text-primary"> Succeed</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Professional trading tools, social features, and educational resources 
-            designed for both beginners and experienced traders.
-          </p>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Ready to Start Your Crypto Journey?
+
+Join thousands of successful traders who trust our platform.
+
+0.1%
+Trading Fees
+24/7
+Support
+Mobile
+App Ready
+$10
+Min Deposit</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
@@ -80,7 +88,8 @@ export const Features = () => {
                 Ready to Start Your Crypto Journey?
               </h3>
               <p className="text-muted-foreground mb-6">
-                Join thousands of successful traders who trust our platform.
+                Join thousands of successful traders who trust our platform. 
+                Start with a demo account or begin copy trading today.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button variant="hero" size="lg">
