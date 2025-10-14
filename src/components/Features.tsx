@@ -64,32 +64,14 @@ $10
 Min Deposit</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {features.map((feature, index) => <Card key={index} className="p-6 bg-gradient-card border-border/50 hover:shadow-card transition-all duration-300 hover:-translate-y-1">
-              <div className="flex items-center gap-3 mb-4">
-                <div className={`p-2 rounded-lg bg-secondary ${feature.color}`}>
-                  <feature.icon className="h-6 w-6" />
-                </div>
-                
-              </div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground">
-                {feature.description}
-              </p>
-            </Card>)}
-        </div>
-
-        <Card className="p-8 bg-gradient-hero border-border/50 shadow-card">
+        <Card className="p-8 bg-gradient-hero border-border/50 shadow-card mb-16">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-2xl font-bold text-foreground mb-4">
                 Ready to Start Your Crypto Journey?
               </h3>
               <p className="text-muted-foreground mb-6">
-                Join thousands of successful traders who trust our platform. 
-                Start with a demo account or begin copy trading today.
+                Join thousands of successful traders who trust our platform.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button variant="hero" size="lg">
@@ -124,6 +106,23 @@ Min Deposit</p>
             </div>
           </div>
         </Card>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature, index) => <Card key={index} className="p-6 bg-gradient-card border-border/50 hover:shadow-card transition-all duration-300 hover:-translate-y-1">
+              <div className="flex items-center gap-3 mb-4">
+                <div className={`p-2 rounded-lg bg-secondary ${feature.color}`}>
+                  <feature.icon className="h-6 w-6" />
+                </div>
+                
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-3">
+                {feature.title}
+              </h3>
+              <p className="text-muted-foreground">
+                {feature.description}
+              </p>
+            </Card>)}
+        </div>
       </div>
     </section>;
 };
