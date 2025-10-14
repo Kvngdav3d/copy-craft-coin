@@ -3,16 +3,10 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, Shield, Users, BarChart3, Brain, Star } from "lucide-react";
 import heroImage from "@/assets/crypto-hero.jpg";
-
 export const Hero = () => {
-  return (
-    <section className="relative min-h-[90vh] bg-gradient-hero flex items-center overflow-hidden">
+  return <section className="relative min-h-[90vh] bg-gradient-hero flex items-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-background/50 to-transparent z-10" />
-      <img 
-        src={heroImage} 
-        alt="Crypto trading platform" 
-        className="absolute inset-0 w-full h-full object-cover opacity-20"
-      />
+      <img src={heroImage} alt="Crypto trading platform" className="absolute inset-0 w-full h-full object-cover opacity-20" />
       
       <div className="container relative z-20 grid lg:grid-cols-2 gap-12 items-center py-20">
         <div className="space-y-8">
@@ -36,9 +30,7 @@ export const Hero = () => {
             <Button variant="hero" size="lg" className="animate-pulse-glow">
               Start Copy Trading
             </Button>
-            <Button variant="outline" size="lg">
-              Try Demo Account
-            </Button>
+            
           </div>
 
           <div className="flex items-center gap-6 pt-4">
@@ -101,6 +93,5 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
