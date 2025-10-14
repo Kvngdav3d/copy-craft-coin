@@ -62,9 +62,7 @@ export const Features = () => {
                 <div className={`p-2 rounded-lg bg-secondary ${feature.color}`}>
                   <feature.icon className="h-6 w-6" />
                 </div>
-                <Badge variant="outline" className="text-xs">
-                  {feature.badge}
-                </Badge>
+                
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-3">
                 {feature.title}
