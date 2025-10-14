@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, User, Bell, Search } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   CommandDialog,
   CommandEmpty,
@@ -13,6 +14,7 @@ import {
 import { LoginDialog } from "./LoginDialog";
 
 export const Header = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [defaultToSignUp, setDefaultToSignUp] = useState(false);
@@ -65,7 +67,7 @@ export const Header = () => {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <TrendingUp className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold text-foreground">CryptoTrade Pro</span>
+            <span onClick={() => navigate('/')} className="text-xl font-bold text-foreground cursor-pointer hover:opacity-80 transition-opacity">CryptoTrade Pro</span>
             <Badge variant="secondary" className="ml-2">Beta</Badge>
           </div>
           
