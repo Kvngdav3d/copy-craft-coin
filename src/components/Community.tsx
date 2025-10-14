@@ -2,84 +2,62 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { 
-  MessageSquare, 
-  Heart, 
-  Share2, 
-  TrendingUp, 
-  Users, 
-  BookOpen,
-  Star,
-  ThumbsUp,
-  Eye
-} from "lucide-react";
-
-const communityPosts = [
-  {
-    id: 1,
-    author: "CryptoAnalyst",
-    avatar: "/placeholder.svg",
-    timeAgo: "2h ago",
-    content: "Just spotted a bullish divergence on $ETH daily chart. Could be gearing up for a breakout above $4000. What do you think?",
-    likes: 127,
-    comments: 23,
-    shares: 8,
-    tag: "Technical Analysis",
-    verified: true
-  },
-  {
-    id: 2,
-    author: "DeFiExplorer",
-    avatar: "/placeholder.svg",
-    timeAgo: "4h ago",
-    content: "New yield farming opportunity on Polygon with 250% APY. Did my due diligence - contract looks solid. DYOR as always!",
-    likes: 89,
-    comments: 31,
-    shares: 15,
-    tag: "DeFi",
-    verified: false
-  },
-  {
-    id: 3,
-    author: "BlockchainNewbie",
-    avatar: "/placeholder.svg",
-    timeAgo: "6h ago",
-    content: "Thanks to everyone who helped me understand dollar-cost averaging! Started my first automated investment plan today 🚀",
-    likes: 203,
-    comments: 45,
-    shares: 12,
-    tag: "Beginner",
-    verified: false
-  }
-];
-
-const educationalContent = [
-  {
-    title: "Cryptocurrency Basics",
-    description: "Learn the fundamentals of blockchain and digital currencies",
-    duration: "15 min read",
-    difficulty: "Beginner",
-    students: 25600
-  },
-  {
-    title: "Technical Analysis Guide",
-    description: "Master chart patterns and trading indicators",
-    duration: "45 min read",
-    difficulty: "Intermediate",
-    students: 18200
-  },
-  {
-    title: "Risk Management Strategies",
-    description: "Protect your portfolio with proven risk management techniques",
-    duration: "30 min read",
-    difficulty: "Advanced",
-    students: 12800
-  }
-];
-
+import { MessageSquare, Heart, Share2, TrendingUp, Users, BookOpen, Star, ThumbsUp, Eye } from "lucide-react";
+const communityPosts = [{
+  id: 1,
+  author: "CryptoAnalyst",
+  avatar: "/placeholder.svg",
+  timeAgo: "2h ago",
+  content: "Just spotted a bullish divergence on $ETH daily chart. Could be gearing up for a breakout above $4000. What do you think?",
+  likes: 127,
+  comments: 23,
+  shares: 8,
+  tag: "Technical Analysis",
+  verified: true
+}, {
+  id: 2,
+  author: "DeFiExplorer",
+  avatar: "/placeholder.svg",
+  timeAgo: "4h ago",
+  content: "New yield farming opportunity on Polygon with 250% APY. Did my due diligence - contract looks solid. DYOR as always!",
+  likes: 89,
+  comments: 31,
+  shares: 15,
+  tag: "DeFi",
+  verified: false
+}, {
+  id: 3,
+  author: "BlockchainNewbie",
+  avatar: "/placeholder.svg",
+  timeAgo: "6h ago",
+  content: "Thanks to everyone who helped me understand dollar-cost averaging! Started my first automated investment plan today 🚀",
+  likes: 203,
+  comments: 45,
+  shares: 12,
+  tag: "Beginner",
+  verified: false
+}];
+const educationalContent = [{
+  title: "Cryptocurrency Basics",
+  description: "Learn the fundamentals of blockchain and digital currencies",
+  duration: "15 min read",
+  difficulty: "Beginner",
+  students: 25600
+}, {
+  title: "Technical Analysis Guide",
+  description: "Master chart patterns and trading indicators",
+  duration: "45 min read",
+  difficulty: "Intermediate",
+  students: 18200
+}, {
+  title: "Risk Management Strategies",
+  description: "Protect your portfolio with proven risk management techniques",
+  duration: "30 min read",
+  difficulty: "Advanced",
+  students: 12800
+}];
 export const Community = () => {
-  return (
-    <section className="py-24 bg-secondary/20" id="community">
+  return <section className="py-24 bg-secondary/20" id="community">
       <div className="container">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4">
@@ -106,8 +84,7 @@ export const Community = () => {
               </div>
             </div>
 
-            {communityPosts.map((post) => (
-              <Card key={post.id} className="p-6 bg-gradient-card border-border/50 hover:shadow-card transition-all duration-300">
+            {communityPosts.map(post => <Card key={post.id} className="p-6 bg-gradient-card border-border/50 hover:shadow-card transition-all duration-300">
                 <div className="flex items-start gap-4">
                   <Avatar className="h-10 w-10">
                     <AvatarImage src={post.avatar} alt={post.author} />
@@ -147,8 +124,7 @@ export const Community = () => {
                     </div>
                   </div>
                 </div>
-              </Card>
-            ))}
+              </Card>)}
 
             <Card className="p-6 bg-gradient-hero border-border/50 text-center">
               <MessageSquare className="h-8 w-8 text-primary mx-auto mb-3" />
@@ -192,8 +168,7 @@ export const Community = () => {
                 Educational Resources
               </h3>
               <div className="space-y-4">
-                {educationalContent.map((content, index) => (
-                  <div key={index} className="p-4 bg-secondary/50 rounded-lg">
+                {educationalContent.map((content, index) => <div key={index} className="p-4 bg-secondary/50 rounded-lg">
                     <h4 className="font-medium text-foreground mb-1">{content.title}</h4>
                     <p className="text-sm text-muted-foreground mb-3">{content.description}</p>
                     <div className="flex items-center justify-between text-xs">
@@ -208,27 +183,16 @@ export const Community = () => {
                         {content.students.toLocaleString()}
                       </span>
                     </div>
-                  </div>
-                ))}
+                  </div>)}
               </div>
               <Button variant="outline" className="w-full mt-4">
                 View All Courses
               </Button>
             </Card>
 
-            <Card className="p-6 bg-gradient-success border-border/50 text-center">
-              <TrendingUp className="h-8 w-8 text-success-foreground mx-auto mb-3" />
-              <h4 className="font-semibold text-success-foreground mb-2">Weekly Contest</h4>
-              <p className="text-success-foreground/80 text-sm mb-4">
-                Compete with other traders and win up to $1,000 in prizes!
-              </p>
-              <Button variant="secondary" size="sm">
-                Join Contest
-              </Button>
-            </Card>
+            
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
