@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, Shield, Users, BarChart3, Brain, Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/crypto-hero.jpg";
 export const Hero = () => {
+  const navigate = useNavigate();
+  
   return <section className="relative min-h-[90vh] bg-gradient-hero flex items-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-background/50 to-transparent z-10" />
       <img src={heroImage} alt="Crypto trading platform" className="absolute inset-0 w-full h-full object-cover opacity-20" />
@@ -27,7 +30,12 @@ export const Hero = () => {
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <Button variant="hero" size="lg" className="animate-pulse-glow">
+            <Button 
+              variant="hero" 
+              size="lg" 
+              className="animate-pulse-glow"
+              onClick={() => navigate('/copy-trading')}
+            >
               Start Copy Trading
             </Button>
             
