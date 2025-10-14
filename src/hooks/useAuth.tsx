@@ -31,43 +31,11 @@ export const useAuth = () => {
 
   const signInWithGoogle = async () => {
     try {
-      const inIframe = window.top !== window.self;
-
-      if (inIframe) {
-        // In preview iframe: get the OAuth URL and navigate top-level to bypass iframe restrictions
-        const { data, error } = await supabase.auth.signInWithOAuth({
-          provider: 'google',
-          options: {
-            redirectTo: `${window.location.origin}/`,
-            skipBrowserRedirect: true,
-          },
-        });
-
-        if (error) {
-          toast({
-            title: "Error",
-            description: error.message,
-            variant: "destructive",
-          });
-          return;
-        }
-
-        if (data?.url) {
-          window.top!.location.href = data.url; // force top-level redirect
-        } else {
-          toast({
-            title: "Error",
-            description: "Unable to start Google sign-in.",
-            variant: "destructive",
-          });
-        }
-        return;
-      }
-
-      const { error } = await supabase.auth.signInWithOAuth({
+      const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
           redirectTo: `${window.location.origin}/`,
+          skipBrowserRedirect: true,
         },
       });
 
@@ -77,11 +45,37 @@ export const useAuth = () => {
           description: error.message,
           variant: "destructive",
         });
+        return;
+      }
+
+      if (data?.url) {
+        // Open Google OAuth in a new tab
+        const popup = window.open(data.url, '_blank', 'width=500,height=600');
+        
+        if (!popup) {
+          toast({
+            title: "Popup Blocked",
+            description: "Please allow popups and try again",
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Continue in new tab",
+            description: "Complete sign-in in the popup window",
+          });
+        }
+      } else {
+        toast({
+          title: "Error",
+          description: "Unable to start Google sign-in",
+          variant: "destructive",
+        });
       }
     } catch (error) {
+      console.error('Google sign-in error:', error);
       toast({
         title: "Error",
-        description: "An unexpected error occurred",
+        description: error instanceof Error ? error.message : "An unexpected error occurred",
         variant: "destructive",
       });
     }
