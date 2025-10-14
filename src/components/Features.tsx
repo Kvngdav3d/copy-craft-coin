@@ -80,8 +80,7 @@ export const Features = () => {
                 Ready to Start Your Crypto Journey?
               </h3>
               <p className="text-muted-foreground mb-6">
-                Join thousands of successful traders who trust our platform. 
-                Start with a demo account or begin copy trading today.
+                Join thousands of successful traders who trust our platform.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button variant="hero" size="lg">
