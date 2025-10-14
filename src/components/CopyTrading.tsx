@@ -3,75 +3,58 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { 
-  TrendingUp, 
-  Users, 
-  Star, 
-  Shield, 
-  Trophy,
-  ArrowUp,
-  ArrowDown,
-  Copy
-} from "lucide-react";
-
-const topTraders = [
-  {
-    id: 1,
-    name: "CryptoKing",
-    avatar: "/placeholder.svg",
-    followers: 12450,
-    winRate: 87.3,
-    monthlyReturn: 247.8,
-    totalReturn: 1250.5,
-    riskLevel: "Medium",
-    verified: true,
-    rating: 4.9,
-    copiers: 3420
-  },
-  {
-    id: 2,
-    name: "BlockchainPro",
-    avatar: "/placeholder.svg",
-    followers: 8930,
-    winRate: 92.1,
-    monthlyReturn: 198.3,
-    totalReturn: 890.2,
-    riskLevel: "Low",
-    verified: true,
-    rating: 4.8,
-    copiers: 2150
-  },
-  {
-    id: 3,
-    name: "AltcoinMaster",
-    avatar: "/placeholder.svg",
-    followers: 15670,
-    winRate: 79.5,
-    monthlyReturn: 312.7,
-    totalReturn: 2100.8,
-    riskLevel: "High",
-    verified: true,
-    rating: 4.7,
-    copiers: 5680
-  },
-  {
-    id: 4,
-    name: "DeFiExpert",
-    avatar: "/placeholder.svg",
-    followers: 6540,
-    winRate: 84.2,
-    monthlyReturn: 156.9,
-    totalReturn: 567.3,
-    riskLevel: "Medium",
-    verified: true,
-    rating: 4.6,
-    copiers: 1890
-  }
-];
-
+import { TrendingUp, Users, Star, Shield, Trophy, ArrowUp, ArrowDown, Copy } from "lucide-react";
+const topTraders = [{
+  id: 1,
+  name: "CryptoKing",
+  avatar: "/placeholder.svg",
+  followers: 12450,
+  winRate: 87.3,
+  monthlyReturn: 247.8,
+  totalReturn: 1250.5,
+  riskLevel: "Medium",
+  verified: true,
+  rating: 4.9,
+  copiers: 3420
+}, {
+  id: 2,
+  name: "BlockchainPro",
+  avatar: "/placeholder.svg",
+  followers: 8930,
+  winRate: 92.1,
+  monthlyReturn: 198.3,
+  totalReturn: 890.2,
+  riskLevel: "Low",
+  verified: true,
+  rating: 4.8,
+  copiers: 2150
+}, {
+  id: 3,
+  name: "AltcoinMaster",
+  avatar: "/placeholder.svg",
+  followers: 15670,
+  winRate: 79.5,
+  monthlyReturn: 312.7,
+  totalReturn: 2100.8,
+  riskLevel: "High",
+  verified: true,
+  rating: 4.7,
+  copiers: 5680
+}, {
+  id: 4,
+  name: "DeFiExpert",
+  avatar: "/placeholder.svg",
+  followers: 6540,
+  winRate: 84.2,
+  monthlyReturn: 156.9,
+  totalReturn: 567.3,
+  riskLevel: "Medium",
+  verified: true,
+  rating: 4.6,
+  copiers: 1890
+}];
 export const CopyTrading = () => {
-  return (
-    <section className="py-24 bg-secondary/20" id="copy-trading">
+  return <section className="py-24 bg-secondary/20" id="copy-trading">
       <div className="container">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4">
@@ -88,8 +71,7 @@ export const CopyTrading = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          {topTraders.map((trader) => (
-            <Card key={trader.id} className="p-6 bg-gradient-card border-border/50 hover:shadow-card transition-all duration-300">
+          {topTraders.map(trader => <Card key={trader.id} className="p-6 bg-gradient-card border-border/50 hover:shadow-card transition-all duration-300">
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center gap-3">
                   <Avatar className="h-12 w-12">
@@ -101,9 +83,7 @@ export const CopyTrading = () => {
                   <div>
                     <div className="flex items-center gap-2">
                       <h3 className="font-semibold text-foreground">{trader.name}</h3>
-                      {trader.verified && (
-                        <Shield className="h-4 w-4 text-primary" />
-                      )}
+                      {trader.verified && <Shield className="h-4 w-4 text-primary" />}
                     </div>
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1">
@@ -117,10 +97,7 @@ export const CopyTrading = () => {
                     </div>
                   </div>
                 </div>
-                <Badge 
-                  variant={trader.riskLevel === 'Low' ? 'default' : trader.riskLevel === 'Medium' ? 'secondary' : 'destructive'}
-                  className="text-xs"
-                >
+                <Badge variant={trader.riskLevel === 'Low' ? 'default' : trader.riskLevel === 'Medium' ? 'secondary' : 'destructive'} className="text-xs">
                   {trader.riskLevel} Risk
                 </Badge>
               </div>
@@ -154,12 +131,8 @@ export const CopyTrading = () => {
                 </div>
               </div>
 
-              <Button variant="success" className="w-full">
-                <Copy className="h-4 w-4" />
-                Start Copying
-              </Button>
-            </Card>
-          ))}
+              
+            </Card>)}
         </div>
 
         <Card className="p-8 bg-gradient-hero border-border/50 shadow-card">
@@ -207,6 +180,5 @@ export const CopyTrading = () => {
           </div>
         </Card>
       </div>
-    </section>
-  );
+    </section>;
 };
