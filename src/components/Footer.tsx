@@ -1,10 +1,8 @@
 import { TrendingUp, Shield, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-
 export const Footer = () => {
-  return (
-    <footer className="bg-gradient-hero border-t border-border">
+  return <footer className="bg-gradient-hero border-t border-border">
       <div className="container py-16">
         <div className="grid lg:grid-cols-4 gap-8 mb-12">
           <div className="space-y-4">
@@ -26,21 +24,21 @@ export const Footer = () => {
             <h3 className="font-semibold text-foreground mb-4">Platform</h3>
             <ul className="space-y-2 text-sm">
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Copy Trading</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Portfolio Tracker</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Market Analysis</a></li>
+              
+              
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Trading Bots</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Mobile App</a></li>
+              
             </ul>
           </div>
 
           <div>
             <h3 className="font-semibold text-foreground mb-4">Resources</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Education Center</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">API Documentation</a></li>
+              
+              
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Help Center</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Community</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Blog</a></li>
+              
             </ul>
           </div>
 
@@ -85,6 +83,5 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
