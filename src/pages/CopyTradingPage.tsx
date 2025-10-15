@@ -4,8 +4,18 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, TrendingUp, Users, Award } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const CopyTradingPage = () => {
+  const { toast } = useToast();
+
+  const handleStartCopying = (traderId: number) => {
+    toast({
+      title: "Started Copying!",
+      description: `You are now copying Trader ${traderId}'s trades. All future trades will be automatically replicated to your account.`,
+    });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -66,7 +76,11 @@ const CopyTradingPage = () => {
                 </div>
               </div>
 
-              <Button variant="default" className="w-full mt-4">
+              <Button 
+                variant="default" 
+                className="w-full mt-4"
+                onClick={() => handleStartCopying(i)}
+              >
                 <TrendingUp className="h-4 w-4 mr-2" />
                 Start Copying
               </Button>
