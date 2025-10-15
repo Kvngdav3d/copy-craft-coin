@@ -3,24 +3,14 @@ import { Badge } from "@/components/ui/badge";
 import { TrendingUp, User, Bell, Search } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
+import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { LoginDialog } from "./LoginDialog";
-
 export const Header = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [defaultToSignUp, setDefaultToSignUp] = useState(false);
-
-  return (
-    <>
+  return <>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="Search cryptocurrencies, features, and more..." />
         <CommandList>
@@ -68,7 +58,7 @@ export const Header = () => {
           <div className="flex items-center gap-2">
             <TrendingUp className="h-8 w-8 text-primary" />
             <span onClick={() => navigate('/')} className="text-xl font-bold text-foreground cursor-pointer hover:opacity-80 transition-opacity">CryptoTrade Pro</span>
-            <Badge variant="secondary" className="ml-2">Beta</Badge>
+            
           </div>
           
           <nav className="hidden md:flex items-center gap-6">
@@ -97,16 +87,21 @@ export const Header = () => {
           <Button variant="ghost" size="icon">
             <Bell className="h-4 w-4" />
           </Button>
-          <Button variant="outline" onClick={() => { setDefaultToSignUp(false); setLoginOpen(true); }}>
+          <Button variant="outline" onClick={() => {
+            setDefaultToSignUp(false);
+            setLoginOpen(true);
+          }}>
             <User className="h-4 w-4" />
             Login
           </Button>
-          <Button variant="hero" onClick={() => { setDefaultToSignUp(true); setLoginOpen(true); }}>
+          <Button variant="hero" onClick={() => {
+            setDefaultToSignUp(true);
+            setLoginOpen(true);
+          }}>
             Get Started
           </Button>
         </div>
       </div>
     </header>
-    </>
-  );
+    </>;
 };
