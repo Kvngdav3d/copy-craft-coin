@@ -2,63 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { TrendingUp, TrendingDown, ArrowUp, ArrowDown, DollarSign } from "lucide-react";
-
-const marketData = [
-  {
-    symbol: "BTC",
-    name: "Bitcoin",
-    price: 67485.23,
-    change: 5.47,
-    volume: "28.5B",
-    marketCap: "1.33T",
-    chart: "up"
-  },
-  {
-    symbol: "ETH",
-    name: "Ethereum",
-    price: 3842.15,
-    change: -2.31,
-    volume: "15.2B",
-    marketCap: "462.8B",
-    chart: "down"
-  },
-  {
-    symbol: "BNB",
-    name: "Binance Coin",
-    price: 635.89,
-    change: 8.92,
-    volume: "2.1B",
-    marketCap: "95.7B",
-    chart: "up"
-  },
-  {
-    symbol: "ADA",
-    name: "Cardano",
-    price: 1.24,
-    change: -1.56,
-    volume: "856M",
-    marketCap: "44.2B",
-    chart: "down"
-  },
-  {
-    symbol: "SOL",
-    name: "Solana",
-    price: 158.92,
-    change: 12.34,
-    volume: "3.8B",
-    marketCap: "73.5B",
-    chart: "up"
-  },
-  {
-    symbol: "DOT",
-    name: "Polkadot",
-    price: 7.83,
-    change: 4.21,
-    volume: "421M",
-    marketCap: "9.8B",
-    chart: "up"
-  }
-];
+import { useRealtimeCrypto } from "@/hooks/useRealtimeCrypto";
 
 const topGainers = [
   { symbol: "MATIC", change: 24.56 },
@@ -73,6 +17,20 @@ const topLosers = [
 ];
 
 export const MarketOverview = () => {
+  const marketData = useRealtimeCrypto();
+  
+  const topGainers = [
+    { symbol: "MATIC", change: 24.56 },
+    { symbol: "LINK", change: 18.92 },
+    { symbol: "UNI", change: 15.47 }
+  ];
+
+  const topLosers = [
+    { symbol: "DOGE", change: -12.34 },
+    { symbol: "SHIB", change: -8.91 },
+    { symbol: "LTC", change: -6.78 }
+  ];
+
   return (
     <section className="py-24 bg-background" id="markets">
       <div className="container">
