@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Copy, Wallet, CheckCircle2, AlertCircle } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -15,12 +16,20 @@ const DepositPage = () => {
   const navigate = useNavigate();
   const [depositAmount, setDepositAmount] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
+  const [selectedCrypto, setSelectedCrypto] = useState("BTC");
   
   const MINIMUM_DEPOSIT = 45;
-  const WALLET_ADDRESS = "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb";
+  
+  const CRYPTO_WALLETS = {
+    BTC: "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+    ETH: "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
+    USDT: "0x8e23ee67d1332ad560396262c48ffbb01f93d052",
+    BNB: "bnb1grpf0955h0ykzq3ar5nmum7y6gdfl6lxfn46h2",
+    SOL: "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU"
+  };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(WALLET_ADDRESS);
+  const copyToClipboard = (address: string) => {
+    navigator.clipboard.writeText(address);
     toast({
       title: "Copied!",
       description: "Wallet address copied to clipboard",
@@ -102,26 +111,43 @@ const DepositPage = () => {
 
           <Card className="bg-gradient-card border-border/50 mb-6">
             <CardHeader>
-              <CardTitle>Deposit Wallet Address</CardTitle>
+              <CardTitle>Select Cryptocurrency</CardTitle>
               <CardDescription>
-                Send your cryptocurrency to this address
+                Choose your preferred cryptocurrency and send to the corresponding address
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex gap-2">
-                <Input 
-                  value={WALLET_ADDRESS} 
-                  readOnly 
-                  className="font-mono text-sm"
-                />
-                <Button 
-                  variant="outline" 
-                  size="icon"
-                  onClick={copyToClipboard}
-                >
-                  <Copy className="h-4 w-4" />
-                </Button>
-              </div>
+              <Tabs defaultValue="BTC" onValueChange={setSelectedCrypto}>
+                <TabsList className="grid w-full grid-cols-5">
+                  <TabsTrigger value="BTC">BTC</TabsTrigger>
+                  <TabsTrigger value="ETH">ETH</TabsTrigger>
+                  <TabsTrigger value="USDT">USDT</TabsTrigger>
+                  <TabsTrigger value="BNB">BNB</TabsTrigger>
+                  <TabsTrigger value="SOL">SOL</TabsTrigger>
+                </TabsList>
+                
+                {Object.entries(CRYPTO_WALLETS).map(([crypto, address]) => (
+                  <TabsContent key={crypto} value={crypto} className="mt-4">
+                    <div className="space-y-2">
+                      <Label>Wallet Address for {crypto}</Label>
+                      <div className="flex gap-2">
+                        <Input 
+                          value={address} 
+                          readOnly 
+                          className="font-mono text-sm"
+                        />
+                        <Button 
+                          variant="outline" 
+                          size="icon"
+                          onClick={() => copyToClipboard(address)}
+                        >
+                          <Copy className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </TabsContent>
+                ))}
+              </Tabs>
             </CardContent>
           </Card>
 
