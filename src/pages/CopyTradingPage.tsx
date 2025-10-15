@@ -5,9 +5,19 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, TrendingUp, Users, Award } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const CopyTradingPage = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const hasDeposited = localStorage.getItem("crypto_deposited");
+    if (!hasDeposited) {
+      navigate("/deposit");
+    }
+  }, [navigate]);
 
   const handleStartCopying = (traderId: number) => {
     toast({
