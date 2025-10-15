@@ -1,184 +1,175 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { TrendingUp, Users, Star, Shield, Trophy, ArrowUp, ArrowDown, Copy } from "lucide-react";
-const topTraders = [{
-  id: 1,
-  name: "CryptoKing",
-  avatar: "/placeholder.svg",
-  followers: 12450,
-  winRate: 87.3,
-  monthlyReturn: 247.8,
-  totalReturn: 1250.5,
-  riskLevel: "Medium",
-  verified: true,
-  rating: 4.9,
-  copiers: 3420
-}, {
-  id: 2,
-  name: "BlockchainPro",
-  avatar: "/placeholder.svg",
-  followers: 8930,
-  winRate: 92.1,
-  monthlyReturn: 198.3,
-  totalReturn: 890.2,
-  riskLevel: "Low",
-  verified: true,
-  rating: 4.8,
-  copiers: 2150
-}, {
-  id: 3,
-  name: "AltcoinMaster",
-  avatar: "/placeholder.svg",
-  followers: 15670,
-  winRate: 79.5,
-  monthlyReturn: 312.7,
-  totalReturn: 2100.8,
-  riskLevel: "High",
-  verified: true,
-  rating: 4.7,
-  copiers: 5680
-}, {
-  id: 4,
-  name: "DeFiExpert",
-  avatar: "/placeholder.svg",
-  followers: 6540,
-  winRate: 84.2,
-  monthlyReturn: 156.9,
-  totalReturn: 567.3,
-  riskLevel: "Medium",
-  verified: true,
-  rating: 4.6,
-  copiers: 1890
-}];
+import { TrendingUp, ArrowUp, ArrowDown, DollarSign } from "lucide-react";
+
+const realtimeTrades = [
+  {
+    symbol: "BTC",
+    name: "Bitcoin",
+    price: 67485.23,
+    change: 5.47,
+    volume: "28.5B",
+    marketCap: "1.33T",
+  },
+  {
+    symbol: "ETH",
+    name: "Ethereum",
+    price: 3842.15,
+    change: -2.31,
+    volume: "15.2B",
+    marketCap: "462.8B",
+  },
+  {
+    symbol: "BNB",
+    name: "Binance Coin",
+    price: 635.89,
+    change: 8.92,
+    volume: "2.1B",
+    marketCap: "95.7B",
+  },
+  {
+    symbol: "ADA",
+    name: "Cardano",
+    price: 1.24,
+    change: -1.56,
+    volume: "856M",
+    marketCap: "44.2B",
+  },
+  {
+    symbol: "SOL",
+    name: "Solana",
+    price: 158.92,
+    change: 12.34,
+    volume: "3.8B",
+    marketCap: "73.5B",
+  },
+  {
+    symbol: "DOT",
+    name: "Polkadot",
+    price: 7.83,
+    change: 4.21,
+    volume: "421M",
+    marketCap: "9.8B",
+  }
+];
 export const CopyTrading = () => {
-  return <section className="py-24 bg-secondary/20" id="copy-trading">
+  return (
+    <section className="py-24 bg-secondary/20" id="copy-trading">
       <div className="container">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4">
-            🏆 Top Performers
+            📊 Live Market Data
           </Badge>
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
-            Copy the Best
-            <span className="text-primary"> Traders</span>
+            Real-Time
+            <span className="text-primary"> Crypto Trading</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Browse verified traders, analyze their performance, and automatically 
-            copy their trades with complete transparency.
+            Stay updated with live prices, charts, and market trends across 500+ cryptocurrencies.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          {topTraders.map(trader => <Card key={trader.id} className="p-6 bg-gradient-card border-border/50 hover:shadow-card transition-all duration-300">
-              <div className="flex items-start justify-between mb-6">
-                <div className="flex items-center gap-3">
-                  <Avatar className="h-12 w-12">
-                    <AvatarImage src={trader.avatar} alt={trader.name} />
-                    <AvatarFallback className="bg-gradient-primary text-primary-foreground">
-                      {trader.name.slice(0, 2)}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-foreground">{trader.name}</h3>
-                      {trader.verified && <Shield className="h-4 w-4 text-primary" />}
-                    </div>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <Users className="h-3 w-3" />
-                        {trader.followers.toLocaleString()} followers
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Star className="h-3 w-3 text-warning" />
-                        {trader.rating}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <Badge variant={trader.riskLevel === 'Low' ? 'default' : trader.riskLevel === 'Medium' ? 'secondary' : 'destructive'} className="text-xs">
-                  {trader.riskLevel} Risk
-                </Badge>
-              </div>
+        <div className="grid lg:grid-cols-4 gap-6 mb-12">
+          <Card className="p-6 bg-gradient-card border-border/50">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold text-foreground">Market Cap</h3>
+              <TrendingUp className="h-5 w-5 text-success" />
+            </div>
+            <div className="text-3xl font-bold text-foreground">$2.45T</div>
+            <div className="text-sm text-success flex items-center gap-1 mt-1">
+              <ArrowUp className="h-3 w-3" />
+              +2.8% (24h)
+            </div>
+          </Card>
 
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div>
-                  <div className="text-2xl font-bold text-success flex items-center gap-1">
-                    <ArrowUp className="h-5 w-5" />
-                    +{trader.monthlyReturn}%
-                  </div>
-                  <div className="text-sm text-muted-foreground">30-day return</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-foreground">
-                    +{trader.totalReturn}%
-                  </div>
-                  <div className="text-sm text-muted-foreground">Total return</div>
-                </div>
-              </div>
+          <Card className="p-6 bg-gradient-card border-border/50">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold text-foreground">24h Volume</h3>
+              <DollarSign className="h-5 w-5 text-primary" />
+            </div>
+            <div className="text-3xl font-bold text-foreground">$89.2B</div>
+            <div className="text-sm text-muted-foreground mt-1">
+              Across all pairs
+            </div>
+          </Card>
 
-              <div className="space-y-3 mb-6">
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Win Rate</span>
-                  <span className="text-foreground font-medium">{trader.winRate}%</span>
-                </div>
-                <Progress value={trader.winRate} className="h-2" />
-                
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Active Copiers</span>
-                  <span className="text-foreground font-medium">{trader.copiers.toLocaleString()}</span>
-                </div>
-              </div>
+          <Card className="p-6 bg-gradient-card border-border/50">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold text-foreground">BTC Dominance</h3>
+              <Badge variant="default">BTC</Badge>
+            </div>
+            <div className="text-3xl font-bold text-foreground">54.2%</div>
+            <div className="text-sm text-muted-foreground mt-1">
+              Market share
+            </div>
+          </Card>
 
-              
-            </Card>)}
+          <Card className="p-6 bg-gradient-card border-border/50">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold text-foreground">Fear & Greed</h3>
+              <Badge variant="secondary">Neutral</Badge>
+            </div>
+            <div className="text-3xl font-bold text-foreground">58</div>
+            <div className="text-sm text-muted-foreground mt-1">
+              Index score
+            </div>
+          </Card>
         </div>
 
-        <Card className="p-8 bg-gradient-hero border-border/50 shadow-card">
-          <div className="text-center mb-8">
-            <Trophy className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-foreground mb-4">
-              Why Copy Trading Works
-            </h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our platform provides complete transparency, real-time performance tracking, 
-              and risk management tools to help you make informed decisions.
-            </p>
+        <Card className="p-6 bg-gradient-card border-border/50">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-xl font-semibold text-foreground">Top Cryptocurrencies</h3>
+            <Button variant="outline" size="sm">
+              View All Markets
+            </Button>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-primary" />
-              </div>
-              <h4 className="font-semibold text-foreground mb-2">Verified Traders</h4>
-              <p className="text-sm text-muted-foreground">
-                All traders are verified with transparent track records
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="h-8 w-8 text-success" />
-              </div>
-              <h4 className="font-semibold text-foreground mb-2">Real-Time Copying</h4>
-              <p className="text-sm text-muted-foreground">
-                Trades are copied instantly with no delays
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Star className="h-8 w-8 text-accent" />
-              </div>
-              <h4 className="font-semibold text-foreground mb-2">Risk Management</h4>
-              <p className="text-sm text-muted-foreground">
-                Set stop-loss limits and control your exposure
-              </p>
-            </div>
+          
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="text-left text-sm text-muted-foreground border-b border-border">
+                  <th className="pb-3">Asset</th>
+                  <th className="pb-3">Price</th>
+                  <th className="pb-3">24h Change</th>
+                  <th className="pb-3">Volume</th>
+                  <th className="pb-3">Market Cap</th>
+                </tr>
+              </thead>
+              <tbody>
+                {realtimeTrades.map((asset) => (
+                  <tr key={asset.symbol} className="border-b border-border/50 hover:bg-secondary/50 transition-colors">
+                    <td className="py-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center text-primary-foreground text-xs font-bold">
+                          {asset.symbol}
+                        </div>
+                        <div>
+                          <div className="font-medium text-foreground">{asset.symbol}</div>
+                          <div className="text-sm text-muted-foreground">{asset.name}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="py-4">
+                      <div className="font-mono text-foreground">
+                        ${asset.price.toLocaleString()}
+                      </div>
+                    </td>
+                    <td className="py-4">
+                      <div className={`flex items-center gap-1 ${asset.change > 0 ? 'text-success' : 'text-destructive'}`}>
+                        {asset.change > 0 ? <ArrowUp className="h-3 w-3" /> : <ArrowDown className="h-3 w-3" />}
+                        {Math.abs(asset.change).toFixed(2)}%
+                      </div>
+                    </td>
+                    <td className="py-4 text-muted-foreground">${asset.volume}</td>
+                    <td className="py-4 text-muted-foreground">${asset.marketCap}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </Card>
       </div>
-    </section>;
+    </section>
+  );
 };
