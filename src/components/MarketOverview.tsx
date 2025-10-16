@@ -17,7 +17,7 @@ const topLosers = [
 ];
 
 export const MarketOverview = () => {
-  const marketData = useRealtimeCrypto();
+  const { cryptoData: marketData, isLoading } = useRealtimeCrypto();
   
   const topGainers = [
     { symbol: "MATIC", change: 24.56 },
@@ -116,34 +116,42 @@ export const MarketOverview = () => {
                     </tr>
                   </thead>
                   <tbody className="space-y-2">
-                    {marketData.map((asset, index) => (
-                      <tr key={asset.symbol} className="border-b border-border/50 hover:bg-secondary/50 transition-colors">
-                        <td className="py-4">
-                          <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center text-primary-foreground text-xs font-bold">
-                              {asset.symbol}
-                            </div>
-                            <div>
-                              <div className="font-medium text-foreground">{asset.symbol}</div>
-                              <div className="text-sm text-muted-foreground">{asset.name}</div>
-                            </div>
-                          </div>
+                    {isLoading ? (
+                      <tr>
+                        <td colSpan={5} className="py-8 text-center text-muted-foreground">
+                          Loading live market data...
                         </td>
-                        <td className="py-4">
-                          <div className="font-mono text-foreground">
-                            ${asset.price.toLocaleString()}
-                          </div>
-                        </td>
-                        <td className="py-4">
-                          <div className={`flex items-center gap-1 ${asset.change > 0 ? 'text-success' : 'text-destructive'}`}>
-                            {asset.change > 0 ? <ArrowUp className="h-3 w-3" /> : <ArrowDown className="h-3 w-3" />}
-                            {Math.abs(asset.change).toFixed(2)}%
-                          </div>
-                        </td>
-                        <td className="py-4 text-muted-foreground">${asset.volume}</td>
-                        <td className="py-4 text-muted-foreground">${asset.marketCap}</td>
                       </tr>
-                    ))}
+                    ) : (
+                      marketData.map((asset) => (
+                        <tr key={asset.symbol} className="border-b border-border/50 hover:bg-secondary/50 transition-colors">
+                          <td className="py-4">
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center text-primary-foreground text-xs font-bold">
+                                {asset.symbol}
+                              </div>
+                              <div>
+                                <div className="font-medium text-foreground">{asset.symbol}</div>
+                                <div className="text-sm text-muted-foreground">{asset.name}</div>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="py-4">
+                            <div className="font-mono text-foreground">
+                              ${asset.price.toLocaleString()}
+                            </div>
+                          </td>
+                          <td className="py-4">
+                            <div className={`flex items-center gap-1 ${asset.change > 0 ? 'text-success' : 'text-destructive'}`}>
+                              {asset.change > 0 ? <ArrowUp className="h-3 w-3" /> : <ArrowDown className="h-3 w-3" />}
+                              {Math.abs(asset.change).toFixed(2)}%
+                            </div>
+                          </td>
+                          <td className="py-4 text-muted-foreground">${asset.volume}</td>
+                          <td className="py-4 text-muted-foreground">${asset.marketCap}</td>
+                        </tr>
+                      ))
+                    )}
                   </tbody>
                 </table>
               </div>
