@@ -21,11 +21,11 @@ const DepositPage = () => {
   const MINIMUM_DEPOSIT = 30;
   
   const CRYPTO_WALLETS = {
-    BTC: "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
-    ETH: "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
+    BTC: "1CsxtR4J5puxttotTgvLXVimxf9rt8UYfs",
+    ETH: "0x2c6862a1b6dc98f1ec1272e8313fb9e8b8d41180",
     USDT: "0x8e23ee67d1332ad560396262c48ffbb01f93d052",
-    BNB: "bnb1grpf0955h0ykzq3ar5nmum7y6gdfl6lxfn46h2",
-    SOL: "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU"
+    BNB: "0x2c6862a1b6dc98f1ec1272e8313fb9e8b8d41180",
+    SOL: "Chw4dh1Bqya4BE4WJuXZPxZM6vFKnJdsnopMskdRUbWz"
   };
 
   const copyToClipboard = (address: string) => {
