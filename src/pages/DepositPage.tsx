@@ -18,7 +18,7 @@ const DepositPage = () => {
   const [isVerifying, setIsVerifying] = useState(false);
   const [selectedCrypto, setSelectedCrypto] = useState("BTC");
   
-  const MINIMUM_DEPOSIT = 45;
+  const MINIMUM_DEPOSIT = 30;
   
   const CRYPTO_WALLETS = {
     BTC: "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
