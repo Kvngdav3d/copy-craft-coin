@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -57,6 +58,7 @@ const educationalContent = [{
   students: 12800
 }];
 export const Community = () => {
+  const navigate = useNavigate();
   return <section className="py-24 bg-secondary/20" id="community">
       <div className="container">
         <div className="text-center mb-16">
@@ -185,7 +187,7 @@ export const Community = () => {
                     </div>
                   </div>)}
               </div>
-              <Button variant="outline" className="w-full mt-4">
+              <Button variant="outline" className="w-full mt-4" onClick={() => navigate('/courses')}>
                 View All Courses
               </Button>
             </Card>
