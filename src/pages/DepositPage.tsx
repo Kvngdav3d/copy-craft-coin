@@ -23,7 +23,6 @@ const DepositPage = () => {
   const CRYPTO_WALLETS = {
     BTC: "1CsxtR4J5puxttotTgvLXVimxf9rt8UYfs",
     ETH: "0x2c6862a1b6dc98f1ec1272e8313fb9e8b8d41180",
-    USDT: "0x8e23ee67d1332ad560396262c48ffbb01f93d052",
     BNB: "0x2c6862a1b6dc98f1ec1272e8313fb9e8b8d41180",
     SOL: "Chw4dh1Bqya4BE4WJuXZPxZM6vFKnJdsnopMskdRUbWz"
   };
@@ -100,7 +99,7 @@ const DepositPage = () => {
               </div>
               <div className="flex items-start gap-2">
                 <CheckCircle2 className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
-                <p className="text-sm">Supported cryptocurrencies: BTC, ETH, USDT, BNB, SOL</p>
+                <p className="text-sm">Supported cryptocurrencies: BTC, ETH, BNB, SOL</p>
               </div>
               <div className="flex items-start gap-2">
                 <CheckCircle2 className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
@@ -118,10 +117,9 @@ const DepositPage = () => {
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="BTC" onValueChange={setSelectedCrypto}>
-                <TabsList className="grid w-full grid-cols-5">
+                <TabsList className="grid w-full grid-cols-4">
                   <TabsTrigger value="BTC">BTC</TabsTrigger>
                   <TabsTrigger value="ETH">ETH</TabsTrigger>
-                  <TabsTrigger value="USDT">USDT</TabsTrigger>
                   <TabsTrigger value="BNB">BNB</TabsTrigger>
                   <TabsTrigger value="SOL">SOL</TabsTrigger>
                 </TabsList>
