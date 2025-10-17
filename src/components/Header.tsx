@@ -84,9 +84,7 @@ export const Header = () => {
           <Button variant="ghost" size="icon" onClick={() => setOpen(true)}>
             <Search className="h-4 w-4" />
           </Button>
-          <Button variant="ghost" size="icon">
-            <Bell className="h-4 w-4" />
-          </Button>
+          
           <Button variant="outline" onClick={() => {
             setDefaultToSignUp(false);
             setLoginOpen(true);
