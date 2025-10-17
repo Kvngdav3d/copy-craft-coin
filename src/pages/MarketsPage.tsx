@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowUp, ArrowDown, Star, Search, TrendingUp } from "lucide-react";
 import { useRealtimeCrypto } from "@/hooks/useRealtimeCrypto";
+import { useFavorites } from "@/hooks/useFavorites";
 import { useState } from "react";
 
 const MarketsPage = () => {
   const { cryptoData, isLoading } = useRealtimeCrypto();
+  const { toggleFavorite, isFavorite } = useFavorites();
   const [searchQuery, setSearchQuery] = useState("");
 
   const allCryptos = [
@@ -145,8 +147,14 @@ const MarketsPage = () => {
                       <td className="py-4 pr-4 text-muted-foreground">${crypto.volume}</td>
                       <td className="py-4 pr-4 text-muted-foreground">${crypto.marketCap}</td>
                       <td className="py-4">
-                        <Button variant="ghost" size="icon">
-                          <Star className="h-4 w-4" />
+                        <Button 
+                          variant="ghost" 
+                          size="icon"
+                          onClick={() => toggleFavorite(crypto.symbol, crypto.name)}
+                        >
+                          <Star 
+                            className={`h-4 w-4 ${isFavorite(crypto.symbol) ? 'fill-primary text-primary' : ''}`} 
+                          />
                         </Button>
                       </td>
                     </tr>
