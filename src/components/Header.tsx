@@ -12,39 +12,25 @@ export const Header = () => {
   const [defaultToSignUp, setDefaultToSignUp] = useState(false);
   return <>
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Search cryptocurrencies, features, and more..." />
+        <CommandInput placeholder="Search pages..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Cryptocurrencies">
-            <CommandItem>
+          <CommandGroup heading="Pages">
+            <CommandItem onSelect={() => { navigate('/'); setOpen(false); }}>
               <TrendingUp className="mr-2 h-4 w-4" />
-              <span>Bitcoin (BTC)</span>
+              <span>Home</span>
             </CommandItem>
-            <CommandItem>
-              <TrendingUp className="mr-2 h-4 w-4" />
-              <span>Ethereum (ETH)</span>
-            </CommandItem>
-            <CommandItem>
-              <TrendingUp className="mr-2 h-4 w-4" />
-              <span>Cardano (ADA)</span>
-            </CommandItem>
-            <CommandItem>
-              <TrendingUp className="mr-2 h-4 w-4" />
-              <span>Solana (SOL)</span>
-            </CommandItem>
-          </CommandGroup>
-          <CommandGroup heading="Features">
-            <CommandItem>
+            <CommandItem onSelect={() => { navigate('/copy-trading'); setOpen(false); }}>
               <User className="mr-2 h-4 w-4" />
               <span>Copy Trading</span>
             </CommandItem>
-            <CommandItem>
-              <User className="mr-2 h-4 w-4" />
-              <span>Portfolio Management</span>
+            <CommandItem onSelect={() => { navigate('/deposit'); setOpen(false); }}>
+              <TrendingUp className="mr-2 h-4 w-4" />
+              <span>Deposit</span>
             </CommandItem>
-            <CommandItem>
+            <CommandItem onSelect={() => { navigate('/courses'); setOpen(false); }}>
               <User className="mr-2 h-4 w-4" />
-              <span>Market Analysis</span>
+              <span>Courses</span>
             </CommandItem>
           </CommandGroup>
         </CommandList>
