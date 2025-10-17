@@ -4,37 +4,53 @@ import { Button } from "@/components/ui/button";
 import { TrendingUp, TrendingDown, ArrowUp, ArrowDown, DollarSign } from "lucide-react";
 import { useRealtimeCrypto } from "@/hooks/useRealtimeCrypto";
 import { useNavigate } from "react-router-dom";
-
-const topGainers = [
-  { symbol: "MATIC", change: 24.56 },
-  { symbol: "LINK", change: 18.92 },
-  { symbol: "UNI", change: 15.47 }
-];
-
-const topLosers = [
-  { symbol: "DOGE", change: -12.34 },
-  { symbol: "SHIB", change: -8.91 },
-  { symbol: "LTC", change: -6.78 }
-];
-
+const topGainers = [{
+  symbol: "MATIC",
+  change: 24.56
+}, {
+  symbol: "LINK",
+  change: 18.92
+}, {
+  symbol: "UNI",
+  change: 15.47
+}];
+const topLosers = [{
+  symbol: "DOGE",
+  change: -12.34
+}, {
+  symbol: "SHIB",
+  change: -8.91
+}, {
+  symbol: "LTC",
+  change: -6.78
+}];
 export const MarketOverview = () => {
-  const { cryptoData: marketData, isLoading } = useRealtimeCrypto();
+  const {
+    cryptoData: marketData,
+    isLoading
+  } = useRealtimeCrypto();
   const navigate = useNavigate();
-  
-  const topGainers = [
-    { symbol: "MATIC", change: 24.56 },
-    { symbol: "LINK", change: 18.92 },
-    { symbol: "UNI", change: 15.47 }
-  ];
-
-  const topLosers = [
-    { symbol: "DOGE", change: -12.34 },
-    { symbol: "SHIB", change: -8.91 },
-    { symbol: "LTC", change: -6.78 }
-  ];
-
-  return (
-    <section className="py-24 bg-background" id="markets">
+  const topGainers = [{
+    symbol: "MATIC",
+    change: 24.56
+  }, {
+    symbol: "LINK",
+    change: 18.92
+  }, {
+    symbol: "UNI",
+    change: 15.47
+  }];
+  const topLosers = [{
+    symbol: "DOGE",
+    change: -12.34
+  }, {
+    symbol: "SHIB",
+    change: -8.91
+  }, {
+    symbol: "LTC",
+    change: -6.78
+  }];
+  return <section className="py-24 bg-background" id="markets">
       <div className="container">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4">
@@ -118,15 +134,11 @@ export const MarketOverview = () => {
                     </tr>
                   </thead>
                   <tbody className="space-y-2">
-                    {isLoading ? (
-                      <tr>
+                    {isLoading ? <tr>
                         <td colSpan={5} className="py-8 text-center text-muted-foreground">
                           Loading live market data...
                         </td>
-                      </tr>
-                    ) : (
-                      marketData.map((asset) => (
-                        <tr key={asset.symbol} className="border-b border-border/50 hover:bg-secondary/50 transition-colors">
+                      </tr> : marketData.map(asset => <tr key={asset.symbol} className="border-b border-border/50 hover:bg-secondary/50 transition-colors">
                           <td className="py-4">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center text-primary-foreground text-xs font-bold">
@@ -151,9 +163,7 @@ export const MarketOverview = () => {
                           </td>
                           <td className="py-4 text-muted-foreground">${asset.volume}</td>
                           <td className="py-4 text-muted-foreground">${asset.marketCap}</td>
-                        </tr>
-                      ))
-                    )}
+                        </tr>)}
                   </tbody>
                 </table>
               </div>
@@ -167,8 +177,7 @@ export const MarketOverview = () => {
                 Top Gainers
               </h3>
               <div className="space-y-3">
-                {topGainers.map((coin, index) => (
-                  <div key={coin.symbol} className="flex items-center justify-between">
+                {topGainers.map((coin, index) => <div key={coin.symbol} className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-6 h-6 bg-gradient-success rounded-full flex items-center justify-center text-success-foreground text-xs">
                         {index + 1}
@@ -176,8 +185,7 @@ export const MarketOverview = () => {
                       <span className="font-medium text-foreground">{coin.symbol}</span>
                     </div>
                     <div className="text-success font-semibold">+{coin.change}%</div>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </Card>
 
@@ -187,8 +195,7 @@ export const MarketOverview = () => {
                 Top Losers
               </h3>
               <div className="space-y-3">
-                {topLosers.map((coin, index) => (
-                  <div key={coin.symbol} className="flex items-center justify-between">
+                {topLosers.map((coin, index) => <div key={coin.symbol} className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-6 h-6 bg-destructive rounded-full flex items-center justify-center text-destructive-foreground text-xs">
                         {index + 1}
@@ -196,23 +203,13 @@ export const MarketOverview = () => {
                       <span className="font-medium text-foreground">{coin.symbol}</span>
                     </div>
                     <div className="text-destructive font-semibold">{coin.change}%</div>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </Card>
 
-            <Card className="p-6 bg-gradient-hero border-border/50">
-              <h3 className="font-semibold text-foreground mb-2">Start Trading</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Join the market with real-time data and advanced tools.
-              </p>
-              <Button variant="hero" className="w-full">
-                Open Trading Account
-              </Button>
-            </Card>
+            
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
