@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { TrendingUp, TrendingDown, ArrowUp, ArrowDown, DollarSign } from "lucide-react";
 import { useRealtimeCrypto } from "@/hooks/useRealtimeCrypto";
+import { useNavigate } from "react-router-dom";
 
 const topGainers = [
   { symbol: "MATIC", change: 24.56 },
@@ -18,6 +19,7 @@ const topLosers = [
 
 export const MarketOverview = () => {
   const { cryptoData: marketData, isLoading } = useRealtimeCrypto();
+  const navigate = useNavigate();
   
   const topGainers = [
     { symbol: "MATIC", change: 24.56 },
@@ -99,7 +101,7 @@ export const MarketOverview = () => {
             <Card className="p-6 bg-gradient-card border-border/50">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-xl font-semibold text-foreground">Top Cryptocurrencies</h3>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" onClick={() => navigate('/markets')}>
                   View All Markets
                 </Button>
               </div>

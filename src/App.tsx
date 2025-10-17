@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import CopyTradingPage from "./pages/CopyTradingPage";
 import DepositPage from "./pages/DepositPage";
 import CoursesPage from "./pages/CoursesPage";
+import MarketsPage from "./pages/MarketsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/deposit" element={<DepositPage />} />
           <Route path="/copy-trading" element={<CopyTradingPage />} />
           <Route path="/courses" element={<CoursesPage />} />
+          <Route path="/markets" element={<MarketsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
