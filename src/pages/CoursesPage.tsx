@@ -234,9 +234,6 @@ const CoursesPage = () => {
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-xl font-bold text-primary">{course.price}</span>
-                    <Button variant="default" size="sm">
-                      Enroll Now
-                    </Button>
                   </div>
                 </div>
               </CardContent>
