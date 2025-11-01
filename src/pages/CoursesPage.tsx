@@ -234,6 +234,9 @@ const CoursesPage = () => {
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-xl font-bold text-primary">{course.price}</span>
+                    <Button variant="default" size="sm">
+                      Enroll Now
+                    </Button>
                   </div>
                 </div>
               </CardContent>
@@ -241,6 +244,23 @@ const CoursesPage = () => {
           ))}
         </div>
 
+        {/* CTA Section */}
+        <Card className="bg-gradient-hero border-border/50 p-8 text-center">
+          <h2 className="text-3xl font-bold mb-4">
+            Ready to Start Your Learning Journey?
+          </h2>
+          <p className="text-xl text-muted-foreground mb-6 max-w-2xl mx-auto">
+            Join thousands of students who are mastering crypto trading with our expert-led courses
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Button variant="hero" size="lg">
+              Browse Free Courses
+            </Button>
+            <Button variant="outline" size="lg">
+              View All Categories
+            </Button>
+          </div>
+        </Card>
       </main>
 
       <Footer />

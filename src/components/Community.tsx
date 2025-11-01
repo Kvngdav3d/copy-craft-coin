@@ -134,7 +134,7 @@ export const Community = () => {
               <p className="text-muted-foreground mb-4">
                 Share your insights, ask questions, and connect with fellow traders.
               </p>
-              <Button variant="hero" onClick={() => window.open('https://t.me/copycraftcoinchannel', '_blank')}>Create Post</Button>
+              <Button variant="hero">Create Post</Button>
             </Card>
           </div>
 
