@@ -26,7 +26,7 @@ export const Footer = () => {
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Copy Trading</a></li>
               
               
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Trading Bots</a></li>
+              <li><a href="https://t.me/copytradepro1" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">Trading Bots</a></li>
               
             </ul>
           </div>
