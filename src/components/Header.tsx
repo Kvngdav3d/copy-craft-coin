@@ -43,7 +43,7 @@ export const Header = () => {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <TrendingUp className="h-8 w-8 text-primary" />
-            <span onClick={() => navigate('/')} className="text-xl font-bold text-foreground cursor-pointer hover:opacity-80 transition-opacity">CryptoTrade Pro</span>
+            <span onClick={() => navigate('/')} className="text-xl font-bold text-foreground cursor-pointer hover:opacity-80 transition-opacity">CopyTradePro</span>
             
           </div>
           
