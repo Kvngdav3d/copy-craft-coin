@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Copy, BarChart3, Shield, Users, Brain, Smartphone, Clock, TrendingUp, Globe, BookOpen, DollarSign, Zap } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 const features = [{
   icon: Copy,
   title: "Copy Trading",
@@ -40,6 +41,7 @@ const features = [{
   color: "text-accent"
 }];
 export const Features = () => {
+  const navigate = useNavigate();
   return <section className="py-24 bg-background" id="features">
       <div className="container">
         <div className="text-center mb-16">
@@ -66,11 +68,15 @@ export const Features = () => {
                 Join thousands of successful traders who trust our platform.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Button variant="hero" size="lg">
+                <Button
+                  variant="hero"
+                  size="lg"
+                  onClick={() => navigate('/deposit')}
+                >
                   <TrendingUp className="h-4 w-4" />
                   Start Trading Now
                 </Button>
-                
+
               </div>
             </div>
             
