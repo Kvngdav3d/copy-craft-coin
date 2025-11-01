@@ -50,18 +50,10 @@ export const Features = () => {
             Everything You Need to
             <span className="text-primary"> Succeed</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Ready to Start Your Crypto Journey?
-
-Join thousands of successful traders who trust our platform.
-
-0.1%
-Trading Fees
-24/7
-Support
-Mobile
-App Ready
-$10
-Min Deposit</p>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Discover powerful tools and features designed to help you trade smarter,
+            manage risk effectively, and grow your crypto portfolio with confidence.
+          </p>
         </div>
 
         <Card className="p-8 bg-gradient-hero border-border/50 shadow-card mb-16">
@@ -93,10 +85,14 @@ Min Deposit</p>
                 <div className="text-2xl font-bold text-foreground">24/7</div>
                 <div className="text-sm text-muted-foreground">Support</div>
               </div>
-              
+              <div className="text-center p-4 bg-secondary/50 rounded-lg">
+                <Smartphone className="h-8 w-8 text-accent mx-auto mb-2" />
+                <div className="text-2xl font-bold text-foreground">Mobile</div>
+                <div className="text-sm text-muted-foreground">App Ready</div>
+              </div>
               <div className="text-center p-4 bg-secondary/50 rounded-lg">
                 <DollarSign className="h-8 w-8 text-warning mx-auto mb-2" />
-                <div className="text-2xl font-bold text-foreground">$30</div>
+                <div className="text-2xl font-bold text-foreground">$10</div>
                 <div className="text-sm text-muted-foreground">Min Deposit</div>
               </div>
             </div>
@@ -109,7 +105,11 @@ Min Deposit</p>
                 <div className={`p-2 rounded-lg bg-secondary ${feature.color}`}>
                   <feature.icon className="h-6 w-6" />
                 </div>
-                
+                {feature.badge && (
+                  <Badge variant="outline" className="text-xs">
+                    {feature.badge}
+                  </Badge>
+                )}
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-3">
                 {feature.title}
