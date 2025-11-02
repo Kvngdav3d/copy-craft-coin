@@ -20,16 +20,6 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">Platform</h3>
-            <ul className="space-y-2 text-sm">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Copy Trading</a></li>
-              
-              
-              <li><a href="https://t.me/copytradepro1" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">Trading Bots</a></li>
-              
-            </ul>
-          </div>
 
           <div>
             <h3 className="font-semibold text-foreground mb-4">Resources</h3>
