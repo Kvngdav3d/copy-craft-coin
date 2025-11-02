@@ -98,7 +98,7 @@ export const Features = () => {
               </div>
               <div className="text-center p-4 bg-secondary/50 rounded-lg">
                 <DollarSign className="h-8 w-8 text-warning mx-auto mb-2" />
-                <div className="text-2xl font-bold text-foreground">$10</div>
+                <div className="text-2xl font-bold text-foreground">$30</div>
                 <div className="text-sm text-muted-foreground">Min Deposit</div>
               </div>
             </div>
