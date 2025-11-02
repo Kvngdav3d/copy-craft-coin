@@ -41,12 +41,18 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  
-  const { signInWithGoogle, signInWithEmail, signUpWithEmail, signInWithPhone, signUpWithPhone } = useAuth();
+
+  const { signInWithGoogle, signInWithEmail, signUpWithEmail, signInWithPhone, signUpWithPhone, user } = useAuth();
 
   useEffect(() => {
     setIsSignUp(defaultToSignUp);
   }, [defaultToSignUp]);
+
+  useEffect(() => {
+    if (user && open) {
+      onOpenChange(false);
+    }
+  }, [user, open, onOpenChange]);
 
   const handleEmailAuth = async () => {
     setErrors({});
