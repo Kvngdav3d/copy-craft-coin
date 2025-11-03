@@ -7,28 +7,41 @@ import { Input } from "@/components/ui/input";
 import { ArrowUp, ArrowDown, Star, Search, TrendingUp } from "lucide-react";
 import { useRealtimeCrypto } from "@/hooks/useRealtimeCrypto";
 import { useFavorites } from "@/hooks/useFavorites";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MarketsPage = () => {
   const { cryptoData, isLoading } = useRealtimeCrypto();
   const { toggleFavorite, isFavorite } = useFavorites();
   const [searchQuery, setSearchQuery] = useState("");
+  const [highlightedSymbols, setHighlightedSymbols] = useState<Set<string>>(new Set());
+  const [previousData, setPreviousData] = useState<Map<string, number>>(new Map());
 
-  const allCryptos = [
-    ...cryptoData,
-    { name: "Polygon", symbol: "MATIC", price: 0.92, change: 24.56, volume: "892M", marketCap: "8.5B" },
-    { name: "Chainlink", symbol: "LINK", price: 14.82, change: 18.92, volume: "1.2B", marketCap: "8.9B" },
-    { name: "Uniswap", symbol: "UNI", price: 6.45, change: 15.47, volume: "245M", marketCap: "4.8B" },
-    { name: "Dogecoin", symbol: "DOGE", price: 0.082, change: -12.34, volume: "1.8B", marketCap: "11.7B" },
-    { name: "Shiba Inu", symbol: "SHIB", price: 0.000009, change: -8.91, volume: "456M", marketCap: "5.3B" },
-    { name: "Litecoin", symbol: "LTC", price: 94.32, change: -6.78, volume: "678M", marketCap: "7.1B" },
-    { name: "Avalanche", symbol: "AVAX", price: 38.45, change: 8.23, volume: "534M", marketCap: "14.2B" },
-    { name: "Cosmos", symbol: "ATOM", price: 11.67, change: 5.89, volume: "289M", marketCap: "4.6B" },
-    { name: "VeChain", symbol: "VET", price: 0.034, change: 12.45, volume: "178M", marketCap: "2.5B" },
-    { name: "Algorand", symbol: "ALGO", price: 0.28, change: -3.21, volume: "234M", marketCap: "2.3B" },
-  ];
+  useEffect(() => {
+    if (cryptoData.length === 0) return;
 
-  const filteredCryptos = allCryptos.filter(crypto => 
+    const newHighlighted = new Set<string>();
+    const newPrices = new Map<string, number>();
+
+    cryptoData.forEach((crypto) => {
+      newPrices.set(crypto.symbol, crypto.price);
+      const prevPrice = previousData.get(crypto.symbol);
+
+      if (prevPrice !== undefined && prevPrice !== crypto.price) {
+        newHighlighted.add(crypto.symbol);
+      }
+    });
+
+    setHighlightedSymbols(newHighlighted);
+    setPreviousData(newPrices);
+
+    const timer = setTimeout(() => {
+      setHighlightedSymbols(new Set());
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [cryptoData]);
+
+  const filteredCryptos = cryptoData.filter(crypto => 
     crypto.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     crypto.symbol.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -118,7 +131,7 @@ const MarketsPage = () => {
                   </tr>
                 ) : (
                   filteredCryptos.map((crypto, index) => (
-                    <tr key={crypto.symbol} className="border-b border-border/50 hover:bg-secondary/50 transition-colors">
+                    <tr key={crypto.symbol} className={`border-b border-border/50 hover:bg-secondary/50 transition-colors ${highlightedSymbols.has(crypto.symbol) ? 'crypto-row-updating' : ''}`}>
                       <td className="py-4 pr-4">
                         <span className="text-muted-foreground">{index + 1}</span>
                       </td>
