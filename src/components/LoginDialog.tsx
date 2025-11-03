@@ -42,7 +42,7 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
   const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  const { signInWithGoogle, signInWithEmail, signUpWithEmail, signInWithPhone, signUpWithPhone, user } = useAuth();
+  const { signInWithEmail, signUpWithEmail, signInWithPhone, signUpWithPhone, user } = useAuth();
 
   useEffect(() => {
     setIsSignUp(defaultToSignUp);
@@ -214,27 +214,59 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
                   <SelectTrigger className="w-[120px]">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="+1">🇺🇸 +1</SelectItem>
-                    <SelectItem value="+44">🇬🇧 +44</SelectItem>
-                    <SelectItem value="+91">🇮🇳 +91</SelectItem>
-                    <SelectItem value="+86">🇨🇳 +86</SelectItem>
-                    <SelectItem value="+81">🇯🇵 +81</SelectItem>
-                    <SelectItem value="+49">🇩🇪 +49</SelectItem>
-                    <SelectItem value="+33">🇫🇷 +33</SelectItem>
-                    <SelectItem value="+39">🇮🇹 +39</SelectItem>
-                    <SelectItem value="+34">🇪🇸 +34</SelectItem>
-                    <SelectItem value="+7">🇷🇺 +7</SelectItem>
-                    <SelectItem value="+55">🇧🇷 +55</SelectItem>
-                    <SelectItem value="+52">🇲🇽 +52</SelectItem>
-                    <SelectItem value="+61">🇦🇺 +61</SelectItem>
-                    <SelectItem value="+82">🇰🇷 +82</SelectItem>
-                    <SelectItem value="+27">🇿🇦 +27</SelectItem>
-                    <SelectItem value="+234">🇳🇬 +234</SelectItem>
-                    <SelectItem value="+62">🇮🇩 +62</SelectItem>
-                    <SelectItem value="+63">🇵🇭 +63</SelectItem>
-                    <SelectItem value="+20">🇪🇬 +20</SelectItem>
-                    <SelectItem value="+966">🇸🇦 +966</SelectItem>
+                  <SelectContent className="max-h-96">
+                    <SelectItem value="+1">🇺🇸 +1 USA</SelectItem>
+                    <SelectItem value="+7">🇷🇺 +7 Russia</SelectItem>
+                    <SelectItem value="+20">🇪🇬 +20 Egypt</SelectItem>
+                    <SelectItem value="+27">🇿🇦 +27 South Africa</SelectItem>
+                    <SelectItem value="+30">🇬🇷 +30 Greece</SelectItem>
+                    <SelectItem value="+31">🇳🇱 +31 Netherlands</SelectItem>
+                    <SelectItem value="+32">🇧🇪 +32 Belgium</SelectItem>
+                    <SelectItem value="+33">🇫🇷 +33 France</SelectItem>
+                    <SelectItem value="+34">🇪🇸 +34 Spain</SelectItem>
+                    <SelectItem value="+36">🇭🇺 +36 Hungary</SelectItem>
+                    <SelectItem value="+39">🇮🇹 +39 Italy</SelectItem>
+                    <SelectItem value="+40">🇷🇴 +40 Romania</SelectItem>
+                    <SelectItem value="+41">🇨🇭 +41 Switzerland</SelectItem>
+                    <SelectItem value="+43">🇦🇹 +43 Austria</SelectItem>
+                    <SelectItem value="+44">🇬🇧 +44 UK</SelectItem>
+                    <SelectItem value="+45">🇩🇰 +45 Denmark</SelectItem>
+                    <SelectItem value="+46">🇸🇪 +46 Sweden</SelectItem>
+                    <SelectItem value="+47">🇳🇴 +47 Norway</SelectItem>
+                    <SelectItem value="+48">🇵🇱 +48 Poland</SelectItem>
+                    <SelectItem value="+49">🇩🇪 +49 Germany</SelectItem>
+                    <SelectItem value="+51">🇵🇪 +51 Peru</SelectItem>
+                    <SelectItem value="+52">🇲🇽 +52 Mexico</SelectItem>
+                    <SelectItem value="+53">🇨🇺 +53 Cuba</SelectItem>
+                    <SelectItem value="+54">🇦🇷 +54 Argentina</SelectItem>
+                    <SelectItem value="+55">🇧🇷 +55 Brazil</SelectItem>
+                    <SelectItem value="+56">🇨🇱 +56 Chile</SelectItem>
+                    <SelectItem value="+57">🇨🇴 +57 Colombia</SelectItem>
+                    <SelectItem value="+58">🇻🇪 +58 Venezuela</SelectItem>
+                    <SelectItem value="+60">🇲🇾 +60 Malaysia</SelectItem>
+                    <SelectItem value="+61">🇦🇺 +61 Australia</SelectItem>
+                    <SelectItem value="+62">🇮🇩 +62 Indonesia</SelectItem>
+                    <SelectItem value="+63">🇵🇭 +63 Philippines</SelectItem>
+                    <SelectItem value="+64">🇳🇿 +64 New Zealand</SelectItem>
+                    <SelectItem value="+65">🇸🇬 +65 Singapore</SelectItem>
+                    <SelectItem value="+66">🇹🇭 +66 Thailand</SelectItem>
+                    <SelectItem value="+81">🇯🇵 +81 Japan</SelectItem>
+                    <SelectItem value="+82">🇰🇷 +82 South Korea</SelectItem>
+                    <SelectItem value="+84">🇻🇳 +84 Vietnam</SelectItem>
+                    <SelectItem value="+86">🇨🇳 +86 China</SelectItem>
+                    <SelectItem value="+90">🇹🇷 +90 Turkey</SelectItem>
+                    <SelectItem value="+91">🇮🇳 +91 India</SelectItem>
+                    <SelectItem value="+92">🇵🇰 +92 Pakistan</SelectItem>
+                    <SelectItem value="+93">🇦🇫 +93 Afghanistan</SelectItem>
+                    <SelectItem value="+94">🇱🇰 +94 Sri Lanka</SelectItem>
+                    <SelectItem value="+95">🇲🇲 +95 Myanmar</SelectItem>
+                    <SelectItem value="+98">🇮🇷 +98 Iran</SelectItem>
+                    <SelectItem value="+212">🇲🇦 +212 Morocco</SelectItem>
+                    <SelectItem value="+234">🇳🇬 +234 Nigeria</SelectItem>
+                    <SelectItem value="+256">🇺🇬 +256 Uganda</SelectItem>
+                    <SelectItem value="+966">🇸🇦 +966 Saudi Arabia</SelectItem>
+                    <SelectItem value="+971">🇦🇪 +971 UAE</SelectItem>
+                    <SelectItem value="+972">🇮🇱 +972 Israel</SelectItem>
                   </SelectContent>
                 </Select>
                 <Input
@@ -299,53 +331,19 @@ export const LoginDialog = ({ open, onOpenChange, defaultToSignUp = false }: Log
         </Tabs>
         
         <div className="space-y-4 mt-6">
-          
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <Separator className="w-full" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">
-                Or continue with
-              </span>
-            </div>
-          </div>
-          
-          <Button variant="outline" className="w-full" onClick={signInWithGoogle}>
-            <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
-              <path
-                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                fill="#4285F4"
-              />
-              <path
-                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                fill="#34A853"
-              />
-              <path
-                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                fill="#FBBC05"
-              />
-              <path
-                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                fill="#EA4335"
-              />
-            </svg>
-            Continue with Google
-          </Button>
-          
           <div className="text-center text-sm">
             <button
               type="button"
               className="text-primary hover:underline"
               onClick={() => setIsSignUp(!isSignUp)}
             >
-              {isSignUp 
-                ? "Already have an account? Sign in" 
+              {isSignUp
+                ? "Already have an account? Sign in"
                 : "Don't have an account? Sign up"
               }
             </button>
           </div>
-          
+
           {!isSignUp && (
             <div className="text-center">
               <button className="text-sm text-muted-foreground hover:text-primary hover:underline">

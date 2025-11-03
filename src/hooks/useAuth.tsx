@@ -36,42 +36,6 @@ export const useAuth = () => {
     return () => subscription.unsubscribe();
   }, [toast]);
 
-  const signInWithGoogle = async () => {
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}`,
-          queryParams: {
-            access_type: 'offline',
-            prompt: 'consent',
-          },
-        },
-      });
-
-      if (error) {
-        toast({
-          title: "Error",
-          description: error.message,
-          variant: "destructive",
-        });
-        return;
-      }
-
-      toast({
-        title: "Redirecting",
-        description: "You will be redirected to Google to complete sign-in",
-      });
-    } catch (error) {
-      console.error('Google sign-in error:', error);
-      toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "An unexpected error occurred",
-        variant: "destructive",
-      });
-    }
-  };
-
   const signInWithEmail = async (email: string, password: string) => {
     try {
       const { error } = await supabase.auth.signInWithPassword({
@@ -230,7 +194,6 @@ export const useAuth = () => {
     user,
     session,
     loading,
-    signInWithGoogle,
     signInWithEmail,
     signUpWithEmail,
     signInWithPhone,
