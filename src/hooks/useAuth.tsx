@@ -36,46 +36,16 @@ export const useAuth = () => {
     return () => subscription.unsubscribe();
   }, [toast]);
 
-  const signInWithEmail = async (email: string, password: string) => {
+  const signInWithGoogle = async () => {
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        toast({
-          title: "Error",
-          description: error.message,
-          variant: "destructive",
-        });
-        return { error };
-      }
-
-      toast({
-        title: "Success",
-        description: "Successfully signed in!",
-      });
-      return { error: null };
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "An unexpected error occurred",
-        variant: "destructive",
-      });
-      return { error };
-    }
-  };
-
-  const signUpWithEmail = async (email: string, password: string) => {
-    try {
-      const redirectUrl = `${window.location.origin}/`;
-      
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
         options: {
-          emailRedirectTo: redirectUrl,
+          redirectTo: `${window.location.origin}`,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
         },
       });
 
@@ -85,21 +55,20 @@ export const useAuth = () => {
           description: error.message,
           variant: "destructive",
         });
-        return { error };
+        return;
       }
 
       toast({
-        title: "Success",
-        description: "Account created successfully!",
+        title: "Redirecting",
+        description: "You will be redirected to Google to complete sign-in",
       });
-      return { error: null };
     } catch (error) {
+      console.error('Google sign-in error:', error);
       toast({
         title: "Error",
-        description: "An unexpected error occurred",
+        description: error instanceof Error ? error.message : "An unexpected error occurred",
         variant: "destructive",
       });
-      return { error };
     }
   };
 
@@ -194,8 +163,7 @@ export const useAuth = () => {
     user,
     session,
     loading,
-    signInWithEmail,
-    signUpWithEmail,
+    signInWithGoogle,
     signInWithPhone,
     signUpWithPhone,
     signOut,
